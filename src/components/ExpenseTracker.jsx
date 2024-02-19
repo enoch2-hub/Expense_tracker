@@ -1,12 +1,17 @@
 // ExpenseTracker.js
 
-import React, { useState } from 'react';
-import ExpenseList from './ExpenseList';
-import ExpenseForm from './ExpenseForm';
-// import './ExpenseTracker.css';
+import React, { useState } from "react";
+import ExpenseList from "./ExpenseList";
+import ExpenseForm from "./ExpenseForm";
+// import "./ExpenseTracker.css";
 
 const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState([]);
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const addExpense = (expense) => {
     setExpenses([...expenses, expense]);
@@ -29,11 +34,20 @@ const ExpenseTracker = () => {
   };
 
   return (
-    <div className="ExpenseTracker">
+    <div className={`ExpenseTracker ${darkMode ? "dark" : "light"}`}>
+      <div className="Toggle">
+        <label>
+          Dark Mode
+          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+        </label>
+      </div>
       <h1>Expense Tracker</h1>
       <ExpenseForm addExpense={addExpense} />
       <div className="Balance">
-        <h2>Balance: ${calculateTotals().totalIncome + calculateTotals().totalExpense}</h2>
+        <h2>
+          Balance: $
+          {calculateTotals().totalIncome + calculateTotals().totalExpense}
+        </h2>
         <div className="IncomeExpense">
           <div className="List">
             <h3>Transaction History</h3>

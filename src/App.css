@@ -4,7 +4,7 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #222222;
 }
 
 .App {
@@ -14,10 +14,6 @@ body {
   justify-content: center;
   height: 100vh;
   text-align: center;
-}
-
-h1 {
-  color: #333;
 }
 
 /* Add more styles as needed for your specific components */
@@ -50,13 +46,9 @@ h1 {
 }
 
 h1 {
-  color: #333;
+  /* color: #333; */
   margin-bottom: 20px;
 }
-
-/* ExpenseTracker.css */
-
-/* ... existing styles */
 
 .List {
   flex: 2;
@@ -90,7 +82,36 @@ h1 {
   color: #e74c3c;
 }
 
+/* ExpenseTracker.css */
+
 /* ... existing styles */
+
+.light {
+  background-color: #fff;
+  color: #333;
+}
+
+.dark {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+}
+
+.Toggle {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.Toggle label {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.Toggle input {
+  vertical-align: middle;
+}
+
+/* ... existing styles */
+
 
 
 
@@ -188,9 +209,9 @@ ul {
 }
 
 li {
-  background-color: #fff;
+  /* background-color: #fff; */
   border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.582);
   display: flex;
   justify-content: space-between;
   align-items: center;
