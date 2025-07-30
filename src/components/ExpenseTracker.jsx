@@ -1,9 +1,8 @@
-// ExpenseTracker.js
-
 import React, { useState } from "react";
 import ExpenseList from "./ExpenseList";
 import ExpenseForm from "./ExpenseForm";
-// import "./ExpenseTracker.css";
+import "./ExpenseTracker.css"; // Ensure this is imported
+import "../App.css"; // Import App.css for global styles and variables
 
 const ExpenseTracker = () => {
   const [expenses, setExpenses] = useState([]);
@@ -14,7 +13,8 @@ const ExpenseTracker = () => {
   };
 
   const addExpense = (expense) => {
-    setExpenses([...expenses, expense]);
+    // Add a unique ID for each expense
+    setExpenses([...expenses, { ...expense, id: Math.random().toString() }]);
   };
 
   const deleteExpense = (id) => {
@@ -33,36 +33,42 @@ const ExpenseTracker = () => {
     return { totalIncome, totalExpense };
   };
 
+  const { totalIncome, totalExpense } = calculateTotals();
+  const balance = totalIncome + totalExpense;
+
   return (
-    <div className={`ExpenseTracker ${darkMode ? "dark" : "light"}`}>
-      <div className="Toggle">
-        <label>
-          Dark Mode
-          <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
-        </label>
-      </div>
-      <h1>Expense Tracker</h1>
-      <ExpenseForm addExpense={addExpense} />
-      <div className="Balance">
-        <h2>
-          Balance: $
-          {calculateTotals().totalIncome + calculateTotals().totalExpense}
-        </h2>
-        <div className="IncomeExpense">
-          <div className="List">
-            <h3>Transaction History</h3>
-            <ExpenseList expenses={expenses} deleteExpense={deleteExpense} />
-          </div>
-          <div className="Totals">
+    // Apply light/dark class to the main container
+    <div className={`ExpenseTracker-AppWrapper ${darkMode ? "dark" : "light"}`}>
+      <div className="ExpenseTracker">
+        <div className="Toggle">
+          <label>
+            Dark Mode
+            <input type="checkbox" checked={darkMode} onChange={toggleDarkMode} />
+          </label>
+        </div>
+        <h1>Expense Tracker</h1>
+
+        <div className="Balance">
+          <h2>
+            Current Balance: <span style={{ color: balance >= 0 ? 'var(--income-color)' : 'var(--expense-color)' }}>${balance.toFixed(2)}</span>
+          </h2>
+          <div className="IncomeExpense">
             <div className="Income">
               <h3>Income</h3>
-              <p>${calculateTotals().totalIncome}</p>
+              <p>${totalIncome.toFixed(2)}</p>
             </div>
             <div className="Expense">
               <h3>Expense</h3>
-              <p>${calculateTotals().totalExpense}</p>
+              <p>${totalExpense.toFixed(2)}</p>
             </div>
           </div>
+        </div>
+
+        <ExpenseForm addExpense={addExpense} />
+
+        <div className="List">
+          <h3>Transaction History</h3>
+          <ExpenseList expenses={expenses} deleteExpense={deleteExpense} />
         </div>
       </div>
     </div>

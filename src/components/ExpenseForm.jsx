@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import './ExpenseForm.css';
 
 const ExpenseForm = ({ addExpense }) => {
-  const [text, setText] = useState('');
-  const [amount, setAmount] = useState('');
+  const [text, setText] = useState("");
+  const [amount, setAmount] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,8 +14,8 @@ const ExpenseForm = ({ addExpense }) => {
         amount: parseFloat(amount),
       };
       addExpense(newExpense);
-      setText('');
-      setAmount('');
+      setText("");
+      setAmount("");
     }
   };
 

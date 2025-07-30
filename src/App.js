@@ -6,7 +6,7 @@ import ExpenseTracker from './components/ExpenseTracker';
 function App() {
   return (
     <div className="App">
-      <ExpenseTracker />
+      <ExpenseTracker/>
     </div>
   );
 }
