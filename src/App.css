@@ -1,23 +1,18 @@
-/* App.css */
+/* App.css - No changes from previous version needed here */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 body {
     font-family: 'Poppins', sans-serif;
-    /* Modern, clean font */
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
-    /* Soft, appealing gradient */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* Use min-height to ensure it covers the screen even with less content */
     color: #333;
-    /* Default text color */
     overflow-y: auto;
-    /* Allow scrolling if content overflows */
 }
 
 /* Base styles for dark mode transition */
@@ -53,7 +48,6 @@ body {
     --income-color: #2ecc71;
     --expense-color: #e74c3c;
     --button-primary-bg: #9b59b6;
-    /* Purple for dark mode primary */
     --button-primary-hover: #8e44ad;
     --button-delete-bg: #c0392b;
     --button-delete-hover: #a52a2a;
@@ -64,215 +58,6 @@ body {
     --balance-shadow: rgba(0, 0, 0, 0.2);
 }
 
-/* General Link/Transition Styling */
 * {
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-
-
-
-
-
-
-
-
-/* ExpenseTracker.css */
-
-.ExpenseTracker {
-    background-color: var(--bg-primary);
-    border-radius: 16px; /* More rounded corners */
-    box-shadow: 0 15px 30px var(--shadow-light); /* Deeper shadow for main card */
-    padding: 30px; /* More internal padding */
-    margin: 20px;
-    width: 100%;
-    max-width: 480px; /* Slightly wider for better mobile/tablet balance */
-    display: flex;
-    flex-direction: column;
-    gap: 25px; /* Spacing between main sections */
-    position: relative; /* For toggle positioning */
-    overflow: hidden; /* Ensures shadows/radii are contained */
-}
-
-h1 {
-    color: var(--text-primary);
-    margin-bottom: 10px; /* Reduce margin to align better with overall gap */
-    font-size: 2.2em; /* Larger, prominent title */
-    font-weight: 700;
-    text-align: center;
-}
-
-.Toggle {
-    position: absolute; /* Position toggle independently */
-    top: 25px;
-    right: 30px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.Toggle label {
-    font-size: 0.9em;
-    color: var(--text-secondary);
-    cursor: pointer;
-    display: flex; /* For aligning text and checkbox */
-    align-items: center;
-    user-select: none; /* Prevent text selection */
-}
-
-/* Custom Toggle Switch (much nicer than default checkbox) */
-.Toggle input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    position: relative;
-    width: 40px; /* Width of the track */
-    height: 20px; /* Height of the track */
-    border-radius: 10px; /* Rounded track */
-    background-color: var(--toggle-track);
-    cursor: pointer;
-    outline: none;
-    margin: 0; /* Remove default margin */
-    transition: background-color 0.3s ease;
-}
-
-.Toggle input[type="checkbox"]::before {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px; /* Size of the thumb */
-    height: 16px; /* Size of the thumb */
-    border-radius: 50%; /* Make it round */
-    background-color: var(--toggle-thumb);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.Toggle input[type="checkbox"]:checked {
-    background-color: #8c7ae6; /* Color when checked (dark mode on) */
-}
-
-.Toggle input[type="checkbox"]:checked::before {
-    transform: translateX(20px); /* Move thumb to the right */
-}
-
-/* Balance Section */
-.Balance {
-    background-color: var(--balance-bg);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 5px 15px var(--balance-shadow);
-    text-align: center;
-}
-
-.Balance h2 {
-    color: var(--text-primary);
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
-
-.IncomeExpense {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px; /* Space between Income and Expense sections */
-    margin-top: 20px;
-    border-top: 1px solid var(--border-color); /* Separator line */
-    padding-top: 20px;
-}
-
-.Income,
-.Expense {
-    flex: 1;
-    text-align: center;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: var(--bg-secondary);
-    box-shadow: 0 2px 8px var(--shadow-dark);
-}
-
-.Income h3,
-.Expense h3 {
-    color: var(--text-secondary);
-    font-size: 1.1em;
-    margin-bottom: 5px;
-    font-weight: 500;
-}
-
-.Income p {
-    color: var(--income-color);
-    font-size: 1.4em;
-    font-weight: 600;
-    margin: 0;
-}
-
-.Expense p {
-    color: var(--expense-color);
-    font-size: 1.4em;
-    font-weight: 600;
-    margin: 0;
-}
-
-/* Transaction History (List) Section */
-.List {
-    margin-top: 25px; /* Space above the transaction list */
-    flex: none; /* Do not let it grow */
-    width: 100%; /* Take full width */
-}
-
-.List h3 {
-    color: var(--text-primary);
-    font-size: 1.4em;
-    margin-bottom: 15px;
-    font-weight: 600;
-    text-align: center;
-}
-
-/* Responsive adjustments for ExpenseTracker.css */
-@media (max-width: 500px) {
-    .ExpenseTracker {
-        margin: 15px;
-        padding: 20px;
-        border-radius: 12px;
-        gap: 20px;
-    }
-
-    h1 {
-        font-size: 1.8em;
-    }
-
-    .Toggle {
-        top: 20px;
-        right: 20px;
-    }
-
-    .Balance {
-        padding: 15px;
-    }
-
-    .Balance h2 {
-        font-size: 1.5em;
-    }
-
-    .Income,
-    .Expense {
-        padding: 12px;
-    }
-
-    .Income p,
-    .Expense p {
-        font-size: 1.2em;
-    }
-
-    .List {
-        margin-top: 20px;
-    }
-
-    .List h3 {
-        font-size: 1.2em;
-    }
-}
-
-

@@ -1,42 +1,65 @@
 /* ExpenseTracker.css */
 
+/* --- Desktop Styles (Default - Mobile will override) --- */
+.ExpenseTracker-AppWrapper {
+    width: 100%;
+    /* This wrapper helps apply theme and padding */
+    padding: 30px;
+    /* Overall padding from screen edges */
+    box-sizing: border-box;
+    /* Include padding in element's total width and height */
+    display: flex;
+    /* For centering the main container */
+    justify-content: center;
+    align-items: flex-start;
+    /* Align to top */
+    min-height: 100vh;
+    /* Ensure it covers full height */
+}
+
 .ExpenseTracker {
     background-color: var(--bg-primary);
     border-radius: 16px;
-    /* More rounded corners */
     box-shadow: 0 15px 30px var(--shadow-light);
-    /* Deeper shadow for main card */
-    padding: 30px;
-    /* More internal padding */
-    margin: 20px;
+    padding: 40px;
+    /* Increased internal padding for desktop */
     width: 100%;
-    max-width: 480px;
-    /* Slightly wider for better mobile/tablet balance */
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    /* Spacing between main sections */
+    max-width: 900px;
+    /* Wider main container for desktop */
+    display: grid;
+    /* Use CSS Grid for desktop layout */
+    grid-template-columns: 1fr 1fr;
+    /* Two columns: Form/Balance on left, List on right */
+    grid-template-rows: auto auto auto;
+    /* Auto rows for header, balance/form, list */
+    gap: 30px;
+    /* Spacing between grid items */
     position: relative;
-    /* For toggle positioning */
     overflow: hidden;
-    /* Ensures shadows/radii are contained */
+    /* Define grid areas for clarity */
+    grid-template-areas:
+        "header header"
+        "balance form"
+        "list list";
 }
 
 h1 {
+    grid-area: header;
+    /* Assign to header area */
     color: var(--text-primary);
     margin-bottom: 10px;
-    /* Reduce margin to align better with overall gap */
-    font-size: 2.2em;
-    /* Larger, prominent title */
+    font-size: 2.5em;
+    /* Larger, prominent title for desktop */
     font-weight: 700;
     text-align: center;
 }
 
 .Toggle {
     position: absolute;
-    /* Position toggle independently */
-    top: 25px;
-    right: 30px;
+    top: 30px;
+    /* Adjust position for desktop padding */
+    right: 40px;
+    /* Adjust position for desktop padding */
     z-index: 10;
     display: flex;
     align-items: center;
@@ -44,33 +67,29 @@ h1 {
 }
 
 .Toggle label {
-    font-size: 0.9em;
+    font-size: 0.95em;
     color: var(--text-secondary);
     cursor: pointer;
     display: flex;
-    /* For aligning text and checkbox */
     align-items: center;
     user-select: none;
-    /* Prevent text selection */
 }
 
-/* Custom Toggle Switch (much nicer than default checkbox) */
+/* Custom Toggle Switch */
 .Toggle input[type="checkbox"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     position: relative;
-    width: 40px;
-    /* Width of the track */
-    height: 20px;
-    /* Height of the track */
-    border-radius: 10px;
-    /* Rounded track */
+    width: 45px;
+    /* Slightly wider toggle */
+    height: 22px;
+    /* Slightly taller toggle */
+    border-radius: 11px;
     background-color: var(--toggle-track);
     cursor: pointer;
     outline: none;
     margin: 0;
-    /* Remove default margin */
     transition: background-color 0.3s ease;
 }
 
@@ -79,12 +98,9 @@ h1 {
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 16px;
-    /* Size of the thumb */
-    height: 16px;
-    /* Size of the thumb */
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    /* Make it round */
     background-color: var(--toggle-thumb);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, background-color 0.3s ease;
@@ -92,38 +108,45 @@ h1 {
 
 .Toggle input[type="checkbox"]:checked {
     background-color: #8c7ae6;
-    /* Color when checked (dark mode on) */
 }
 
 .Toggle input[type="checkbox"]:checked::before {
-    transform: translateX(20px);
-    /* Move thumb to the right */
+    transform: translateX(23px);
+    /* Move thumb for wider toggle */
 }
 
 /* Balance Section */
-.Balance {
+.Balance-Overview {
+    grid-area: balance;
+    /* Assign to balance area */
     background-color: var(--balance-bg);
     border-radius: 12px;
-    padding: 20px;
+    padding: 25px;
+    /* Slightly more padding */
     box-shadow: 0 5px 15px var(--balance-shadow);
     text-align: center;
+    display: flex;
+    /* Use flex for internal layout */
+    flex-direction: column;
+    justify-content: center;
 }
 
-.Balance h2 {
+.Balance-Overview h2 {
     color: var(--text-primary);
-    font-size: 1.8em;
-    margin-bottom: 15px;
+    font-size: 2em;
+    /* Larger balance text */
+    margin-bottom: 20px;
+    /* More space below balance */
     font-weight: 600;
 }
 
 .IncomeExpense {
     display: flex;
     justify-content: space-around;
-    gap: 20px;
-    /* Space between Income and Expense sections */
+    gap: 25px;
+    /* More space between Income and Expense sections */
     margin-top: 20px;
     border-top: 1px solid var(--border-color);
-    /* Separator line */
     padding-top: 20px;
 }
 
@@ -131,7 +154,8 @@ h1 {
 .Expense {
     flex: 1;
     text-align: center;
-    padding: 15px;
+    padding: 20px;
+    /* More padding */
     border-radius: 10px;
     background-color: var(--bg-secondary);
     box-shadow: 0 2px 8px var(--shadow-dark);
@@ -140,67 +164,186 @@ h1 {
 .Income h3,
 .Expense h3 {
     color: var(--text-secondary);
-    font-size: 1.1em;
-    margin-bottom: 5px;
+    font-size: 1.2em;
+    /* Slightly larger headings */
+    margin-bottom: 8px;
     font-weight: 500;
 }
 
-.Income p {
-    color: var(--income-color);
-    font-size: 1.4em;
-    font-weight: 600;
-    margin: 0;
-}
-
+.Income p,
 .Expense p {
-    color: var(--expense-color);
-    font-size: 1.4em;
+    font-size: 1.6em;
+    /* Larger amounts */
     font-weight: 600;
     margin: 0;
 }
 
 /* Transaction History (List) Section */
 .List {
-    margin-top: 25px;
-    /* Space above the transaction list */
-    flex: none;
-    /* Do not let it grow */
+    grid-area: list;
+    /* Assign to list area - will span columns on desktop */
     width: 100%;
-    /* Take full width */
+    margin-top: 0;
+    /* No external margin, controlled by grid gap */
 }
 
 .List h3 {
     color: var(--text-primary);
-    font-size: 1.4em;
+    font-size: 1.5em;
+    /* Larger heading */
     margin-bottom: 15px;
     font-weight: 600;
     text-align: center;
 }
 
-/* Responsive adjustments for ExpenseTracker.css */
-@media (max-width: 500px) {
-    .ExpenseTracker {
-        margin: 15px;
+/* --- Mobile Styles (Override Desktop Styles) --- */
+@media (max-width: 800px) {
+
+    /* This breakpoint will define the mobile experience */
+    .ExpenseTracker-AppWrapper {
         padding: 20px;
-        border-radius: 12px;
+        /* Less overall padding for mobile */
+        align-items: flex-start;
+        /* Still align to top */
+    }
+
+    .ExpenseTracker {
+        padding: 25px;
+        /* Reduced internal padding */
+        max-width: 450px;
+        /* Max width for mobile container */
+        grid-template-columns: 1fr;
+        /* Single column layout for mobile */
+        grid-template-rows: auto auto auto auto;
+        /* Re-flow rows */
         gap: 20px;
+        /* Less spacing between sections */
+        /* Redefine grid areas for mobile layout */
+        grid-template-areas:
+            "header"
+            "toggle"
+            /* Move toggle to its own row for mobile */
+            "balance"
+            "form"
+            "list";
     }
 
     h1 {
-        font-size: 1.8em;
+        font-size: 2em;
+        /* Smaller heading for mobile */
+        margin-bottom: 0;
+        /* Adjust margin as toggle is separate */
     }
 
     .Toggle {
-        top: 20px;
-        right: 20px;
+        grid-area: toggle;
+        /* Assign to toggle area */
+        position: static;
+        /* Remove absolute positioning */
+        margin: 0 auto;
+        /* Center the toggle */
+        padding-top: 10px;
+        /* Add some space above toggle */
     }
 
-    .Balance {
+    .Toggle label {
+        font-size: 0.85em;
+        /* Smaller label font */
+    }
+
+    .Toggle input[type="checkbox"] {
+        width: 35px;
+        /* Smaller toggle switch */
+        height: 18px;
+        border-radius: 9px;
+    }
+
+    .Toggle input[type="checkbox"]::before {
+        width: 14px;
+        height: 14px;
+    }
+
+    .Toggle input[type="checkbox"]:checked::before {
+        transform: translateX(17px);
+    }
+
+    .Balance-Overview {
+        grid-area: balance;
+        /* Keep in balance area */
+        padding: 20px;
+        /* Reduced padding */
+    }
+
+    .Balance-Overview h2 {
+        font-size: 1.6em;
+        /* Smaller balance text */
+        margin-bottom: 15px;
+    }
+
+    .IncomeExpense {
+        flex-direction: column;
+        /* Stack income/expense vertically */
+        gap: 15px;
+        /* Reduced gap when stacked */
+        padding-top: 15px;
+    }
+
+    .Income,
+    .Expense {
+        padding: 15px;
+        /* Reduced padding */
+    }
+
+    .Income h3,
+    .Expense h3 {
+        font-size: 1.05em;
+    }
+
+    .Income p,
+    .Expense p {
+        font-size: 1.3em;
+    }
+
+    /* ExpenseForm will be on its own row (grid-area: form) */
+
+    .List {
+        grid-area: list;
+        /* Keep in list area */
+        margin-top: 0;
+        /* No external margin, controlled by grid gap */
+    }
+
+    .List h3 {
+        font-size: 1.3em;
+        margin-bottom: 10px;
+    }
+}
+
+/* Further adjustments for very small mobile devices (<= 450px) */
+@media (max-width: 450px) {
+    .ExpenseTracker-AppWrapper {
+        padding: 10px;
+    }
+
+    .ExpenseTracker {
+        padding: 18px;
+        gap: 15px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    .Toggle {
+        padding-top: 5px;
+    }
+
+    .Balance-Overview {
         padding: 15px;
     }
 
-    .Balance h2 {
-        font-size: 1.5em;
+    .Balance-Overview h2 {
+        font-size: 1.4em;
     }
 
     .Income,
@@ -208,16 +351,17 @@ h1 {
         padding: 12px;
     }
 
-    .Income p,
-    .Expense p {
-        font-size: 1.2em;
+    .Income h3,
+    .Expense h3 {
+        font-size: 1em;
     }
 
-    .List {
-        margin-top: 20px;
+    .Income p,
+    .Expense p {
+        font-size: 1.1em;
     }
 
     .List h3 {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 }
