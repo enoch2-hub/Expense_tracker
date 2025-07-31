@@ -48,7 +48,7 @@ const ExpenseTracker = () => {
         </div>
         <h1>Expense Tracker</h1>
 
-        <div className="Balance">
+        <div className="Balance-Overview">
           <h2>
             Current Balance: <span style={{ color: balance >= 0 ? 'var(--income-color)' : 'var(--expense-color)' }}>${balance.toFixed(2)}</span>
           </h2>

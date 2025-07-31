@@ -170,6 +170,13 @@ h1 {
     font-weight: 500;
 }
 
+.Income p {
+    color: var(--income-color);
+}
+.Expense p {
+    color: var(--expense-color);
+}
+
 .Income p,
 .Expense p {
     font-size: 1.6em;
